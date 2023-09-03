@@ -1,0 +1,30 @@
+---
+const stack: { [key: string]: string[] } = {
+  frontend: [
+    "HTML & (S)CSS",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next",
+    "Astro",
+    "TailwindCSS",
+  ],
+  backend: ["Express", "Node.js", "Django", "Flask"],
+  databases: ["MongoDB", "PostgreSQL", "Redis"],
+};
+---
+
+<div>
+    {
+        Object.entries(stack).map(([name, items]) => (
+            <div>
+                <blockquote>{name}</blockquote>
+                <ul>
+                    {items.map(item => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </div>
+        ))
+    }
+</div>

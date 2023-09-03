@@ -1,0 +1,25 @@
+---
+export interface Props {
+  title: string;
+}
+
+const routes = [
+  { href: "/", path: "home" },
+  { href: "/about", path: "about" },
+  { href: "/projects", path: "projects" },
+];
+---
+
+<nav>
+  <ul>
+    {
+      routes.map((route) => {
+        return (
+          <li>
+            <a href={route.href}>{route.path}</a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

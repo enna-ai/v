@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout title="(404) Uh Oh!" description="Are you lost?">
+  <div>
+    <p id="emoji">
+      <h1>404 - Page Not Found</h1>
+      <a href="/">$cd home</a>
+    </p>
+  </div>
+</Layout>
+
+<script>
+  const emojiArray = [
+    "\\(o_o)/",
+    "(o^^)o",
+    "(˚Δ˚)b",
+    "(^-^*)",
+    "(^_^)b",
+    "(╯‵□′)╯",
+    "(='X'=)",
+    "(>_<)",
+    "\\(°ˊДˋ°)/",
+    "ㄟ(▔▽▔)ㄏ",
+  ];
+
+  const emoji = document.querySelector("#emoji");
+  if (emoji)
+    emoji.innerHTML = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+</script>

@@ -1,0 +1,71 @@
+---
+import { GITHUB_URL } from "../consts";
+import { getEnv } from "../utils/env";
+import { getLanguageColor } from "../utils/languageColors"
+
+export interface Props {
+    repo: string | any;
+}
+
+const { repo } = Astro.props;
+
+let data;
+
+if (typeof repo === "string" && repo.includes("api.github.com")) {
+const requestInit = {
+    headers: new Headers({
+        "User-Agent": GITHUB_URL
+    }),
+} satisfies RequestInit;
+
+if (repo.includes("api.github.com")) {
+    const env = import.meta.env;
+    const token = getEnv(Astro.request, env, "ASTRO_GITHUB_TOKEN");
+    requestInit.headers.set("Accept", "application/vnd.github+json");
+    requestInit.headers.set("Authorization", `Bearer ${token}`);
+}
+
+data = await fetch(repo, requestInit).then(async r => {
+    if (!r.ok) {
+        const e = await r.text().catch(() => "Unknown Error");
+        throw new Error(
+            `Failed to fetch repo info for ${repo}: ${r.status} ${r.statusText}\n${e}`
+        );
+    }
+
+    return r.json();
+});
+} else {
+    data = repo;
+}
+
+const {
+    name,
+    owner,
+    html_url,
+    description,
+    language
+} = data;
+
+const avatarUrl = owner.avatar_url;
+---
+
+<a href={html_url}>
+    <span class="open-external">
+
+    </span>
+
+    <div class="author">
+        <img src={avatarUrl} alt="" />
+        <span>{owner.login}</span>
+    </div>
+
+    <h3>{name}</h3>
+    <span class="description">{description}</span>
+
+    <div class="info">
+        <span class="language" style={`--lang-color: ${getLanguageColor(language)}`}>
+            {language}
+        </span>
+    </div>
+</a>
