@@ -1,10 +1,10 @@
 ---
 import { GITHUB_URL } from "../consts";
 import { getEnv } from "../utils/env";
-import { getLanguageColor } from "../utils/languageColors"
+import { getLanguageColor } from "../utils/languageColors";
 
 export interface Props {
-    repo: string | any;
+  repo: string | any;
 }
 
 const { repo } = Astro.props;
@@ -12,60 +12,143 @@ const { repo } = Astro.props;
 let data;
 
 if (typeof repo === "string" && repo.includes("api.github.com")) {
-const requestInit = {
+  const requestInit = {
     headers: new Headers({
-        "User-Agent": GITHUB_URL
+      "User-Agent": GITHUB_URL,
     }),
-} satisfies RequestInit;
+  } satisfies RequestInit;
 
-if (repo.includes("api.github.com")) {
+  if (repo.includes("api.github.com")) {
     const env = import.meta.env;
     const token = getEnv(Astro.request, env, "ASTRO_GITHUB_TOKEN");
     requestInit.headers.set("Accept", "application/vnd.github+json");
     requestInit.headers.set("Authorization", `Bearer ${token}`);
-}
+  }
 
-data = await fetch(repo, requestInit).then(async r => {
+  data = await fetch(repo, requestInit).then(async (r) => {
     if (!r.ok) {
-        const e = await r.text().catch(() => "Unknown Error");
-        throw new Error(
-            `Failed to fetch repo info for ${repo}: ${r.status} ${r.statusText}\n${e}`
-        );
+      const e = await r.text().catch(() => "Unknown Error");
+      throw new Error(
+        `Failed to fetch repo info for ${repo}: ${r.status} ${r.statusText}\n${e}`
+      );
     }
 
     return r.json();
-});
+  });
 } else {
-    data = repo;
+  data = repo;
 }
 
-const {
-    name,
-    owner,
-    html_url,
-    description,
-    language
-} = data;
+const { name, owner, html_url, description, language } = data;
 
 const avatarUrl = owner.avatar_url;
 ---
 
 <a href={html_url}>
-    <span class="open-external">
+  <span class="external">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path fill="currentColor" d="M14 5a1 1 0 1 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0V6.414l-9.293 9.293a1 1 0 0 1-1.414-1.414L17.586 5H14zM3 7a2 2 0 0 1 2-2h5a1 1 0 1 1 0 2H5v12h12v-5a1 1 0 1 1 2 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+  </span>
 
+  <div class="author">
+    <img src={avatarUrl} alt="" />
+    <span>{owner.login}</span>
+  </div>
+
+  <h3>{name}</h3>
+  <span class="description">{description}</span>
+
+  <div class="info">
+    <span
+      class="language"
+      style={`--lang-color: ${getLanguageColor(language)}`}
+    >
+      {language}
     </span>
-
-    <div class="author">
-        <img src={avatarUrl} alt="" />
-        <span>{owner.login}</span>
-    </div>
-
-    <h3>{name}</h3>
-    <span class="description">{description}</span>
-
-    <div class="info">
-        <span class="language" style={`--lang-color: ${getLanguageColor(language)}`}>
-            {language}
-        </span>
-    </div>
+  </div>
 </a>
+
+<style lang="scss">
+  a {
+    all: unset;
+    cursor: pointer;
+    position: relative;
+    background: var(--surface2);
+    border: 1px solid var(--accent-semi-trans);
+    padding: 1em;
+    border-radius: 8px;
+    display: grid;
+    
+
+    transition:
+      200mx box-shadow var(--box-shadow-transition),
+      200ms background;
+  }
+  a:is(:hover, :active) {
+    box-shadow: var(--box-shadow-stronger);
+    background: var(--surface-semi-trans);
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  span {
+    font-size: 0.9em;
+  }
+
+  .description {
+    margin-top: 0.3em;
+    margin-bottom: 0.8em;
+  }
+
+  .author,
+  .info {
+    display: flex;
+    align-items: center;
+  }
+
+  .author {
+    margin-bottom: 1em;
+  }
+
+  .author img {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    margin-right: 0.3em;
+  }
+
+  .info {
+    line-height: 1.2em;
+  }
+
+  .language::before {
+    content: "";
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    transform: translateY(0.05em);
+    border-radius: 50%;
+    background: var(--lang-color);
+    margin-right: 0.6em;
+  }
+
+  .external {
+    all: unset;
+    cursor: pointer;
+    color: var(--color-trans);
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    transition: 200ms color;
+
+    &:hover {
+      color: var(--color);
+    }
+  }
+
+  .external :global(svg) {
+    width: 1.2em;
+    height: 1.2em;
+  }
+</style>

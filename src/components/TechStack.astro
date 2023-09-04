@@ -7,24 +7,66 @@ const stack: { [key: string]: string[] } = {
     "React",
     "Next",
     "Astro",
-    "TailwindCSS",
   ],
-  backend: ["Express", "Node.js", "Django", "Flask"],
-  databases: ["MongoDB", "PostgreSQL", "Redis"],
+  backend: ["Express", "Node.js", "Django", "Flask", "MongoDB", "PostgreSQL", "Redis"],
 };
 ---
 
-<div>
-    {
-        Object.entries(stack).map(([name, items]) => (
-            <div>
-                <blockquote>{name}</blockquote>
-                <ul>
-                    {items.map(item => (
-                        <li>{item}</li>
-                    ))}
-                </ul>
-            </div>
-        ))
-    }
+<div class="container">
+  {
+    Object.entries(stack).map(([name, items]) => (
+      <div>
+        <blockquote>{name}</blockquote>
+        <ul>
+          {items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
 </div>
+
+<style lang="scss">
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      gap: unset;
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 200px));
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    li {
+      position: relative;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      font-size: var(--sm);
+      font-weight: 400;
+
+      &:before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        line-height: 12px;
+        font-size: var(--xl);
+      }
+    }
+  }
+
+  blockquote {
+    margin-left: 0;
+    padding-left: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+  }
+</style>

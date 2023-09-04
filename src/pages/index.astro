@@ -1,69 +1,158 @@
 ---
+import CenterBody from "../components/CenterBody.astro";
 import Layout from "../layouts/Layout.astro";
 
 const contact = [
-    {
-        label: "Email",
-        link: "mailto:example@mail.com",
-        shortcut: "@viann",
-    },
-    {
-        label: "LinkedIn",
-        link: "https://linkedin.com/in/username",
-        shortcut: "@viannle",
-    },
-    {
-        label: "Github",
-        link: "https://github.com/enna-ai",
-        shortcut: "@enna-ai",
-    }
+  {
+    label: "Email",
+    link: "mailto:example@mail.com",
+    shortcut: "@viann",
+  },
+  {
+    label: "LinkedIn",
+    link: "https://linkedin.com/in/username",
+    shortcut: "@viannle",
+  },
+  {
+    label: "Github",
+    link: "https://github.com/enna-ai",
+    shortcut: "@enna-ai",
+  },
 ];
 ---
 
 <Layout title="Vi's Site" description="My portfolio website">
-  <header>
-    <img
-      src="https://i.imgur.com/2DEVDhK.png"
-      width={250}
-      height={250}
-      alt="Avatar"
-    />
-  </header>
+  <CenterBody>
+    <header>
+      <div>
+        <span class="heading-text">
+          <h1>Hi, I'm Vi!</h1>
+          <span class="pronouns">(she/her)</span>
+        </span>
 
-  <section>
-    <div>
-      <span>
-        <h1>Hi, I'm <span>Vi</span>!</h1>
-        <span>(she/her)</span>
-      </span>
+        <h2>software developer, graphic designer</h2>
+      </div>
 
-      <h2>software developer, graphic designer</h2>
-    </div>
+      <img
+        src="https://i.imgur.com/eLscz02.png"
+        width={100}
+        height={100}
+        alt="Avatar"
+      />
+    </header>
 
-    <p>
-      I'm a self-taught full stack software developer with a focus in building
-      front-end web apps, command-line tools and occasionally creating graphic
-      design assets.
-    </p>
+    <section>
+      <p>
+        I'm a self-taught <span>full stack software developer</span> with a focus in building
+        front-end web apps, command-line tools and occasionally creating graphic
+        design assets.
+      </p>
 
-    <div>
-      <p>You can find me all over the interwebs:</p>
-      <iframe
-        title="Discord user embed"
-        width="340"
-        height="72"
-        frameborder="0"
-        sandbox="allow-scripts"
-        src="https://widgets.vendicated.dev/user?id=454115882235330561&theme=dark&banner=false&full-banner=false&rounded-corners=true&discord-icon=true&badges=false&guess-nitro=false&background-color=%23c2739d1e&foreground-color=%23C2739D"
-      ></iframe>
+      <div>
+        <h3>Contact Me</h3>
+        <iframe
+          title="Discord user embed"
+          width="340"
+          height="72"
+          frameborder="0"
+          sandbox="allow-scripts"
+          src="https://widgets.vendicated.dev/user?id=454115882235330561&theme=dark&banner=false&full-banner=false&rounded-corners=true&discord-icon=true&badges=false&guess-nitro=false&background-color=%23c2739d1e&foreground-color=%23C2739D"
+        ></iframe>
 
-      <ul>
-        {contact.map((item) => (
-            <li>
+        <ul>
+          {
+            contact.map((item) => (
+              <li>
                 {item.label} — <a href={item.link}>{item.shortcut}</a>
-            </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </CenterBody>
 </Layout>
+
+<style lang="scss">
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(30px, 4vw, 60px);
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  h2 {
+    padding-top: 5px;
+    font-weight: 400;
+    font-size: clamp(20px, 3vw, 40px);
+  }
+
+  h3 {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-size: 2em;
+  }
+
+  span {
+    color: var(--accent);
+  }
+
+  .heading-text {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .pronouns {
+    padding-left: 5px;
+    padding-top: 10px;
+    color: var(--color-trans);
+  }
+
+  .subp {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  img {
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  section {
+    margin-bottom: 2.5em;
+  }
+
+  a:not(:hover, :focus) {
+    text-decoration: none;
+  }
+  ul {
+    padding-left: 1.4em;
+    margin-top: 2rem;
+  }
+
+  li {
+    word-wrap: break-word;
+    margin-top: 0.6em;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--accent);
+
+    &:hover {
+      color: var(--color);
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+</style>

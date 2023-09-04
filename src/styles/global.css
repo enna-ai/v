@@ -1,0 +1,85 @@
+@import "./variables.css";
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter.var-subset.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: "Regular";
+}
+
+::-webkit-scrollbar {
+    width: 13px;
+    height: 100%;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--surface1);
+    border: 3px solid var(--bg);
+    border-radius: 10px;
+}
+
+html {
+    overflow-y: overlay;
+    height: -webkit-fill-available;
+    height: stretch;
+    height: fill-available;
+    font-family: Inter, system-ui, sans-serif;
+    scrollbar-color: var(--surface1) var(--bg);
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--color);
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: stretch;
+    min-height: fill-available;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+
+    word-spacing: 2px;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        --horizontal-margin: 5%;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+p {
+    line-height: 1.75em;
+    margin: 1rem 0;
+}
+
+::selection {
+    background-color: var(--accent-semi-trans);
+    color: var(--color-bright);
+}
+
+blockquote {
+    border-left: 4px solid var(--accent);
+    background-color: var(--surface1);
+}

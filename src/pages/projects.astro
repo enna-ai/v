@@ -1,9 +1,18 @@
 ---
+import CenterBody from "../components/CenterBody.astro";
 import Layout from "../layouts/Layout.astro";
 import Project from "../components/Project.astro";
 ---
 
 <Layout title="My Projects" description="My software projects">
+  <CenterBody>
     <h1>My Projects</h1>
     <Project />
+  </CenterBody>
 </Layout>
+
+<style>
+  h1 {
+    padding-bottom: 20px;
+  }
+</style>

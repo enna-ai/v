@@ -1,0 +1,34 @@
+:root {
+    --bg: #0f0009;
+    --surface: #10000a;
+    --surface1: #c2739d1f;
+    --surface2: #c2739d0f;
+    --color: #D7A5BF;
+    --color-semi-trans: rgba(0, 0, 0, 0.3);
+
+    --accent: #C2739D;
+    --color-bright: #fdd5e9;
+    --color-trans: #e6b6cf88;
+    --color-semi-trans: #d7a5bf1a;
+    --accent-semi-trans: #c2739d1e;
+    --surface-semi-trans: #c2739d1c;
+
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+    --box-shadow-stronger: 0 8px 15px rgba(0, 0, 0, 0.25),
+        0 6px 6px rgba(0, 0, 0, 0.22);
+    --box-shadow-transition: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    --radius: 4px;
+    --horizontal-margin: 20%;
+
+    --xxs: 12px;
+    --xs: 13px;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+    --xl: 20px;
+    --xxl: 22px;
+
+    --font-sans: 'Roboto', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+}

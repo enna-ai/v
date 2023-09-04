@@ -28,7 +28,7 @@
     >
   </a>
   <a
-    href="https://linkedin.com/in/vianneyledesma"
+    href="https://linkedin.com/in/username"
     target="_blank"
     rel="noreferrer"
   >
@@ -54,7 +54,7 @@
       ></svg
     >
   </a>
-  <a href="mailto:viann.ledesma@gmail.com" target="_blank" rel="noreferrer">
+  <a href="mailto:example@gmail.com" target="_blank" rel="noreferrer">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="18"
@@ -71,3 +71,31 @@
     >
   </a>
 </div>
+
+<style lang="scss">
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    a {
+      color: var(--accent);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color);
+        background-color: var(--accent-semi-trans);
+      }
+    }
+  }
+</style>

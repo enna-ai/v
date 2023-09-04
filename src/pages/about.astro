@@ -1,20 +1,76 @@
 ---
+import CenterBody from "../components/CenterBody.astro";
 import Layout from "../layouts/Layout.astro";
 import TechStack from "../components/TechStack.astro";
 ---
 
 <Layout title="About Me" description="Learn about me">
-  <h1>About Me</h1>
-  <p>
-    Hi there! I'm <span>Vi</span>. I'm a Software Developer with a strong
-    passion for building user friendly web applications, intuitive command line
-    tools, and exploring the world of tech.
-    <br />
-     In my spare time, I enjoy creating digital art and graphic design,
-    listening to metal and indie music and watching kdramas and anime. I'm also
-    an avid reader of psychology, fascinated by how our minds work.
-  </p>
+  <CenterBody>
+    <h1>About Me</h1>
+    <p>
+      Hi there! I'm <span>Vi</span>. I'm a <span>Software Developer</span> with
+      a strong passion for building user friendly <span>web applications</span>, intuitive
+      <span>command-line tools</span>, and exploring the world of tech.
+    </p>
+    <p>
+      In my spare time, I enjoy creating <span>digital art</span> and <span
+        >graphic design</span
+      >, listening to metal and indie music and watching kdramas and anime. I'm
+      also an avid reader of <span>psychology</span>, fascinated by how our minds work.
+    </p>
 
-  <h2>Tech Stack</h2>
-  <TechStack />
+    <h2>Tech Stack</h2>
+    <TechStack />
+  </CenterBody>
 </Layout>
+
+<style lang="scss">
+  .inner {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 50px;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+
+    .wrapper {
+      position: relative;
+      max-width: 300px;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  h2 {
+    padding-top: 10px;
+    paddng-bottom: 10px;
+    font-size: 2em;
+  }
+
+  img {
+    position: relative;
+    border-radius: var(--radius);
+    animation: float 6s ease-in-out infinite;
+    animation-play-state: running;
+  }
+
+  span {
+    color: var(--accent);
+  }
+  @keyframes float {
+    0% {
+      transform: translateY(7px);
+    }
+
+    50% {
+      transform: translateY(-7px);
+    }
+
+    100% {
+      transform: translateY(7px);
+    }
+  }
+</style>

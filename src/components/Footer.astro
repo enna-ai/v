@@ -3,16 +3,54 @@ import Socials from "./Socials.astro";
 ---
 
 <footer>
-    <Socials />
-
-    <p>
-        &copy; Built and designed by <a
-            href="https://github.com/enna-ai"
-            target="_blank"
-            rel="noreferrer"
-            class="name"
-        >
-            <span>@vi</span> &#62;
-        </a>
-    </p>
+  <Socials />
+  <p>
+    &copy; Built and designed by <a
+      href="https://github.com/enna-ai"
+      target="_blank"
+      rel="noreferrer"
+      class="name"><span>@vi</span> &#62;</a
+    >
+  </p>
 </footer>
+
+<style lang="scss">
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding: 2em
+      min(var(--margin, var(--horizontal-margin)), var(--horizontal-margin));
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  p {
+    filter: brightness(80%);
+    font-size: 90%;
+  }
+  .name {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: var(--accent);
+
+    &:hover {
+      color: var(--color-bright);
+    }
+    &:after {
+      content: "_";
+      font-weight: bold;
+      position: absolute;
+      animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+  }
+</style>
