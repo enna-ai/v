@@ -1,0 +1,145 @@
+---
+import CenterBody from "../components/CenterBody.astro";
+import Layout from "../layouts/Layout.astro";
+import TechStack from "../components/TechStack.astro";
+---
+
+<Layout title="About Me" description="About me">
+  <CenterBody>
+    <section>
+      <h1 class="section-heading">
+        <span class="highlight">02.</span> About Me
+      </h1>
+      <p>
+        Hello there! I'm Vi, a software developer who enjoys building user-friendly web applications, command-line tools, and learning about new technologies. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium dolore nemo suscipit vero modi fuga vel doloremque veniam corrupti accusamus nesciunt amet autem, dignissimos, velit repellat. Illum doloremque ipsum itaque!
+      </p>
+      <p>Here are some technologies I have been working with:</p>
+      <TechStack />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam non nemo veritatis placeat dignissimos aperiam alias, accusamus possimus eos perferendis libero repellendus ab odio assumenda. Porro suscipit laborum exercitationem possimus.
+      </p>
+    </section>
+
+    <section>
+      <h2>Let's Connect!</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas consectetur repellendus, minus incidunt corporis enim velit animi ipsam mollitia sapiente veritatis nisi eligendi omnis. Omnis molestias necessitatibus itaque earum fuga.
+      </p>
+      <div class="contact-btns">
+        <button
+          class="contact-btn"
+          onclick="window.location.href='mailto:mail@gmail.com'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 256 256"
+            style={{ verticalAlign: "middle", paddingRight: "8" }}
+          >
+            <path
+              fill="currentColor"
+              d="M224,44H32A12,12,0,0,0,20,56V192a20,20,0,0,0,20,20H216a20,20,0,0,0,20-20V56A12,12,0,0,0,224,44ZM193.15,68,128,127.72,62.85,68ZM44,188V83.28l75.89,69.57a12,12,0,0,0,16.22,0L212,83.28V188Z"
+            ></path>
+          </svg> Email
+        </button>
+        <button
+          onclick="window.open('https://linkedin.com/in/username', '_blank')"
+          class="contact-btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 256 256"
+            style={{ verticalAlign: "middle", paddingRight: "8" }}
+          >
+            <path
+              fill="currentColor"
+              d="M216,20H40A20,20,0,0,0,20,40V216a20,20,0,0,0,20,20H216a20,20,0,0,0,20-20V40A20,20,0,0,0,216,20Zm-4,192H44V44H212ZM112,176V124a12,12,0,0,1,21.43-7.41A40,40,0,0,1,192,152v24a12,12,0,0,1-24,0V152a16,16,0,0,0-32,0v24a12,12,0,0,1-24,0ZM96,124v52a12,12,0,0,1-24,0V124a12,12,0,0,1,24,0ZM68,80A16,16,0,1,1,84,96,16,16,0,0,1,68,80Z"
+            ></path>
+          </svg>
+          LinkedIn
+        </button>
+        <button
+          onclick="window.open('https://github.com/enna-ai', '_blank')"
+          class="contact-btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 256 256"
+            style={{ verticalAlign: "middle", paddingRight: "8" }}>
+            <path
+              fill="currentColor"
+              d="M212.62,75.17A63.7,63.7,0,0,0,206.39,26,12,12,0,0,0,196,20a63.71,63.71,0,0,0-50,24H126A63.71,63.71,0,0,0,76,20a12,12,0,0,0-10.39,6,63.7,63.7,0,0,0-6.23,49.17A61.5,61.5,0,0,0,52,104v8a60.1,60.1,0,0,0,45.76,58.28A43.66,43.66,0,0,0,92,192v4H76a20,20,0,0,1-20-20,44.05,44.05,0,0,0-44-44,12,12,0,0,0,0,24,20,20,0,0,1,20,20,44.05,44.05,0,0,0,44,44H92v12a12,12,0,0,0,24,0V192a20,20,0,0,1,40,0v40a12,12,0,0,0,24,0V192a43.66,43.66,0,0,0-5.76-21.72A60.1,60.1,0,0,0,220,112v-8A61.5,61.5,0,0,0,212.62,75.17ZM196,112a36,36,0,0,1-36,36H112a36,36,0,0,1-36-36v-8a37.87,37.87,0,0,1,6.13-20.12,11.65,11.65,0,0,0,1.58-11.49,39.9,39.9,0,0,1-.4-27.72,39.87,39.87,0,0,1,26.41,17.8A12,12,0,0,0,119.82,68h32.35a12,12,0,0,0,10.11-5.53,39.84,39.84,0,0,1,26.41-17.8,39.9,39.9,0,0,1-.4,27.72,12,12,0,0,0,1.61,11.53A37.85,37.85,0,0,1,196,104Z"
+            ></path>
+          </svg>
+          Github
+        </button>
+      </div>
+    </section>
+  </CenterBody>
+</Layout>
+
+<style lang="scss">
+  .contact-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .contact-btn {
+      background: var(--base2);
+      color: var(--text);
+
+      &:hover {
+        background: var(--base2-bright);
+      }
+    }
+  }
+
+  h1 {
+    &::before {
+      content: "02";
+      height: 175px;
+      font-size: 175px;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      z-index: -1;
+      user-select: none;
+      transform: translateX(-55%);
+      -webkit-text-stroke: 2px var(--muted);
+      color: transparent;
+      opacity: 6%;
+      letter-spacing: -0.1em;
+      position: absolute;
+    }
+  }
+
+  .highlight {
+    padding-right: 6px;
+  }
+
+  h2 {
+    color: unset;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 22px;
+    font-size: 15px;
+
+    &:hover {
+      outline: none;
+    }
+  }
+
+  section {
+    margin-bottom: 1em;
+  }
+</style>

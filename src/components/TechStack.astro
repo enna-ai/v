@@ -1,0 +1,72 @@
+---
+const stack: { [key: string]: string[] } = {
+  frontend: [
+    "HTML/SCSS",
+    "JS/TS",
+    "ReactJS",
+    "NextJS",
+    "Angular",
+    "Java",
+  ],
+  backend: [
+    "Express",
+    "NestJS",
+    "Spring",
+    "React Native",
+    "MongoDB",
+    "Postgres",
+  ],
+};
+---
+
+<div class="container">
+  {
+    Object.entries(stack).map(([, items]) => (
+      <div>
+        <ul>
+          {items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      gap: unset;
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 200px));
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    li {
+      position: relative;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      font-size: var(--sm);
+      font-weight: 400;
+      color: var(--muted);
+
+      &:before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        font-size: 14px;
+        color: var(--color1);
+      }
+    }
+  }
+</style>

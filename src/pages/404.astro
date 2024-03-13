@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout title="(404) Oh no!" description="Are you lost?">
+  <div>
+    <p id="emoji">
+      <h1>404 - Page Not Found</h1>
+      <a href="/">$cd home</a>
+    </p>
+  </div>
+</Layout>
+
+<script>
+  const emojiArray = [
+    "\\(o_o)/",
+    "(o^^)o",
+    "(˚Δ˚)b",
+    "(^-^*)",
+    "(^_^)b",
+    "(╯‵□′)╯",
+    "(='X'=)",
+    "(>_<)",
+    "\\(°ˊДˋ°)/",
+    "ㄟ(▔▽▔)ㄏ",
+  ];
+
+  const emoji = document.querySelector("#emoji");
+  if (emoji)
+    emoji.innerHTML = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+</script>
+
+<style lang="scss">
+  div {
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    height: fit-content;
+    inset: 0;
+  }
+
+  #emoji {
+    font-size: clamp(40px, 5vw, 50px);
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: clamp(20px, 5vw, 30px);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: var(--lg);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+</style>
