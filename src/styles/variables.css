@@ -1,0 +1,30 @@
+:root {
+    --base1: #1A1825;
+    --base2: #201E2F;
+    --base2-bright: #232134;
+    --text: #DFDDF4;
+    --text2: #BDBBD0;
+    --muted: #827D9A;
+
+    --color1: #C4A7E7;
+    --color2: #907AA9;
+
+    --trans1: #907aa931;
+    --trans2: #907aa95d;
+    --trans3:#c4a7e723;
+
+    --xxs: 12px;
+    --xs: 13px;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+    --xl: 20px;
+    --xxl: 22px;
+    --mx-heading: 32px;
+
+    --radius: 0.20rem;
+    --horizontal-margin: 20%;
+
+    --font-sans: "Roboto", sans-serif;
+    --font-mono: "Roboto Mono", monospace;
+}
