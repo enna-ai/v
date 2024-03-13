@@ -1,0 +1,73 @@
+---
+export interface Props {
+    title: string;
+}
+
+const routes = [
+    { href: "/", path: "01. home" },
+    { href: "/about", path: "02. about" },
+    { href: "/projects", path: "03. projects" },
+];
+---
+
+<nav>
+    <div>
+        <a href="/">
+            <img
+                src="https://i.imgur.com/SriuBkX.png"
+                width={25}
+                height={25}
+                alt="icon"
+            />
+        </a>
+    </div>
+    <ul>
+        {
+            routes.map((route) => {
+                return (
+                    <li>
+                        <a href={route.href}>{route.path}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</nav>
+
+<style lang="scss">
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            list-style-type: none;
+            gap: 20px;
+
+            li {
+                font-family: var(--font-mono);
+                font-size: var(--xs);
+
+                a {
+                    text-decoration: none;
+                    text-align: center;
+                    transition: 0.15s ease;
+                    transition-property: color, text-decoration;
+
+                    &:hover,
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+</style>
