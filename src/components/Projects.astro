@@ -1,0 +1,40 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+const repos = [
+  "https://api.github.com/repos/enna-ai/Vbusy",
+  "https://api.github.com/repos/enna-ai/leafcare",
+  "https://api.github.com/repos/enna-ai/insights",
+  "https://api.github.com/repos/enna-ai/vnotes",
+  "https://api.github.com/repos/enna-ai/pic-ai",
+  "https://api.github.com/repos/enna-ai/ani",
+  "https://api.github.com/repos/enna-ai/axle",
+  "https://api.github.com/repos/enna-ai/ginsights",
+];
+---
+
+<div>
+  {repos.map((repo) => <ProjectCard repo={repo} />)}
+</div>
+
+<style>
+  div {
+    --cols: 3;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: 0.75em;
+    padding-top: 2em;
+  }
+
+  @media screen and (max-width: 1400px) {
+    div {
+      --cols: 2;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    div {
+      --cols: 1;
+    }
+  }
+</style>

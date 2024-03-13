@@ -1,0 +1,163 @@
+---
+import { GITHUB_URL } from "../consts";
+import { getEnv } from "../utils/env";
+import { getLanguageColor } from "../utils/languageColors";
+
+export interface Props {
+  repo: string | any;
+}
+
+const { repo } = Astro.props;
+
+let data;
+
+if (typeof repo === "string" && repo.includes("api.github.com")) {
+  const requestInit = {
+    headers: new Headers({
+      "User-Agent": GITHUB_URL,
+    }),
+  } satisfies RequestInit;
+
+  if (repo.includes("api.github.com")) {
+    const env = import.meta.env;
+    const token = getEnv(Astro.request, env, "ASTRO_GITHUB_TOKEN");
+    requestInit.headers.set("Accept", "application/vnd.github+json");
+    requestInit.headers.set("Authorization", `Bearer ${token}`);
+  }
+
+  data = await fetch(repo, requestInit).then(async (r) => {
+    if (!r.ok) {
+      const e = await r.text().catch(() => "Unknown Error");
+
+      throw new Error(
+        `Failed to fetch repo info fo ${repo}: ${r.status} ${r.statusText}\n${e}`
+      );
+    }
+
+    return r.json();
+  });
+} else {
+  data = repo;
+}
+
+const { name, owner, html_url, description, language } = data;
+
+const avatarUrl = owner.avatar_url;
+---
+
+<a href={html_url} class="cards">
+  <span class="external">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 256 256"
+      style={{ verticalAlign: "middle" }}>
+      <path
+        fill="currentColor"
+        d="M228,104a12,12,0,0,1-24,0V69l-59.51,59.51a12,12,0,0,1-17-17L187,52H152a12,12,0,0,1,0-24h64a12,12,0,0,1,12,12Zm-44,24a12,12,0,0,0-12,12v64H52V84h64a12,12,0,0,0,0-24H48A20,20,0,0,0,28,80V208a20,20,0,0,0,20,20H176a20,20,0,0,0,20-20V140A12,12,0,0,0,184,128Z"
+      ></path>
+    </svg>
+  </span>
+
+  <div class="author">
+    <img src={avatarUrl} alt="github avatar" />
+    <span>{owner.login}</span>
+  </div>
+
+  <h3>{name}</h3>
+  <span class="desc">{description}</span>
+
+  <div class="info">
+    <span
+      class="language"
+      style={`--lang-color: ${getLanguageColor(language)}`}
+    >
+      {language}
+    </span>
+  </div>
+</a>
+
+<style lang="scss">
+  a {
+    all: unset;
+    cursor: pointer;
+    position: relative;
+    padding: 1em;
+    border-radius: 8px;
+    display: grid;
+  }
+
+  .cards {
+    background: var(--base2);
+
+    &:hover {
+      background: var(--base2-bright);
+    }
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--text2);
+  }
+
+  span {
+    font-size: 0.85em;
+  }
+
+  .desc {
+    margin-top: 0.3em;
+    margin-bottom: 0.8em;
+    color: var(--text2);
+  }
+
+  .author,
+  .info {
+    display: flex;
+    align-items: center;
+  }
+
+  .author {
+    margin-bottom: 0.5rem;
+    color: var(--text2);
+  }
+
+  .author img {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    margin-right: 0.3em;
+  }
+
+  .info {
+    line-height: 1.2em;
+  }
+
+  .language {
+    margin-right: 0.6em;
+    color: var(--text2);
+  }
+
+  .language::before {
+    content: "";
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    transform: translateY(0.05em);
+    border-radius: 50%;
+    background: var(--lang-color);
+  }
+
+  .external {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    transition: 200ms color;
+
+    &:hover {
+      color: var(--color1);
+    }
+  }
+</style>

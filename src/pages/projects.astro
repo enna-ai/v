@@ -1,0 +1,47 @@
+---
+import CenterBody from "../components/CenterBody.astro";
+import Layout from "../layouts/Layout.astro";
+import Project from "../components/Projects.astro";
+---
+
+<Layout title="Projects" description="My software projects">
+  <CenterBody margin="15%">
+    <section>
+      <h1 class="section-heading">
+        <span class="highlight">03.</span> Projects
+      </h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum
+        similique deserunt dolor facilis corrupti nihil inventore totam porro
+        laborum obcaecati nam, minus libero mollitia vero. Cum aspernatur nulla
+        facere autem?
+      </p>
+
+      <Project />
+    </section>
+  </CenterBody>
+</Layout>
+
+<style>
+  h1 {
+    &::before {
+      content: "03";
+      height: 175px;
+      font-size: 175px;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      z-index: -1;
+      user-select: none;
+      transform: translateX(-55%);
+      -webkit-text-stroke: 2px var(--muted);
+      color: transparent;
+      opacity: 6%;
+      letter-spacing: -0.1em;
+      position: absolute;
+    }
+  }
+
+  .highlight {
+    padding-right: 6px;
+  }
+</style>
